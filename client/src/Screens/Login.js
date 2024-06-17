@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import CustomTextInput from "../Common/CustomTextInput";
 import CommonButton from "../Common/CommonButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 import Loader from "../Common/Loader";
 
 const Login = () => {
@@ -18,42 +18,42 @@ const Login = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   // login function
-  const login = () => {
-    setModalVisible(true);
+  // const login = () => {
+  //   setModalVisible(true);
 
-    if (email == "") {
-      setModalVisible(false);
-      setBadEmail(true);
-    } else {
-      setBadEmail(false);
+  //   if (email == "") {
+  //     setModalVisible(false);
+  //     setBadEmail(true);
+  //   } else {
+  //     setBadEmail(false);
 
-      if (password == "") {
-        setModalVisible(false);
-        setBadPassword(true);
-      } else {
-        setTimeout(() => {
-          setBadPassword(false);
+  //     if (password == "") {
+  //       setModalVisible(false);
+  //       setBadPassword(true);
+  //     } else {
+  //       setTimeout(() => {
+  //         setBadPassword(false);
 
-          getData();
-        }, 2000);
-      }
-    }
-  };
+  //         getData();
+  //       }, 2000);
+  //     }
+  //   }
+  // };
 
   // get async data
-  const getData = async () => {
-    const mEmail = await AsyncStorage.getItem("EMAIL");
-    const mPassword = await AsyncStorage.getItem("PASSWORD");
+  // const getData = async () => {
+  //   const mEmail = await AsyncStorage.getItem("EMAIL");
+  //   const mPassword = await AsyncStorage.getItem("PASSWORD");
 
-    // login details checking and navigation
-    if (email == mEmail && password == mPassword) {
-      setModalVisible(false);
+  //   // login details checking and navigation
+  //   if (email == mEmail && password == mPassword) {
+  //     setModalVisible(false);
 
-      navigation.navigate("Home");
-    } else {
-      setModalVisible(false);
-    }
-  };
+  //     navigation.navigate("Home");
+  //   } else {
+  //     setModalVisible(false);
+  //   }
+  // };
 
   return (
     <View style={{ flex: 1 }}>
@@ -119,9 +119,9 @@ const Login = () => {
         title={"Login"}
         bgColor={"#000"}
         textColor={"#fff"}
-        onPress={() => {
-          login();
-        }}
+        // onPress={() => {
+        //   login();
+        // }}
       />
 
       {/* register text */}

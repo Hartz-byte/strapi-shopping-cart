@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React, { useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 
 const Profile = () => {
@@ -8,14 +8,14 @@ const Profile = () => {
 
   const [name, setName] = useState("");
 
-  useEffect(() => {
-    getData();
-  });
+  // useEffect(() => {
+  //   getData();
+  // });
 
-  const getData = async () => {
-    retrievedName = await AsyncStorage.getItem("NAME");
-    setName(retrievedName);
-  };
+  // const getData = async () => {
+  //   retrievedName = await AsyncStorage.getItem("NAME");
+  //   setName(retrievedName);
+  // };
 
   return (
     <View style={{ flex: 1 }}>

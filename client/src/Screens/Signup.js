@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CustomTextInput from "../Common/CustomTextInput";
 import CommonButton from "../Common/CommonButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Signup = () => {
   const navigation = useNavigation();
@@ -21,76 +21,76 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // validation function
-  const signup = () => {
-    setIsLoading(true);
+  // const signup = () => {
+  //   setIsLoading(true);
 
-    let isValid = true;
+  //   let isValid = true;
 
-    if (name.trim() === "") {
-      isValid = false;
-      setBadName(true);
-    } else {
-      setBadName(false);
-    }
+  //   if (name.trim() === "") {
+  //     isValid = false;
+  //     setBadName(true);
+  //   } else {
+  //     setBadName(false);
+  //   }
 
-    if (email.trim() === "") {
-      isValid = false;
-      setBadEmail(true);
-    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      isValid = false;
-      setBadEmail(true);
-    } else {
-      setBadEmail(false);
-    }
+  //   if (email.trim() === "") {
+  //     isValid = false;
+  //     setBadEmail(true);
+  //   } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+  //     isValid = false;
+  //     setBadEmail(true);
+  //   } else {
+  //     setBadEmail(false);
+  //   }
 
-    if (mobile.length !== 10) {
-      isValid = false;
-      setBadMobile(true);
-    } else {
-      setBadMobile(false);
-    }
+  //   if (mobile.length !== 10) {
+  //     isValid = false;
+  //     setBadMobile(true);
+  //   } else {
+  //     setBadMobile(false);
+  //   }
 
-    if (password.trim() === "") {
-      isValid = false;
-      setBadPassword(true);
-    } else {
-      setBadPassword(false);
-    }
+  //   if (password.trim() === "") {
+  //     isValid = false;
+  //     setBadPassword(true);
+  //   } else {
+  //     setBadPassword(false);
+  //   }
 
-    if (confirmPassword.trim() === "") {
-      isValid = false;
-      setBadConfirmPassword(true);
-    } else if (confirmPassword !== password) {
-      isValid = false;
-      setBadConfirmPassword(true);
-    } else {
-      setBadConfirmPassword(false);
-    }
+  //   if (confirmPassword.trim() === "") {
+  //     isValid = false;
+  //     setBadConfirmPassword(true);
+  //   } else if (confirmPassword !== password) {
+  //     isValid = false;
+  //     setBadConfirmPassword(true);
+  //   } else {
+  //     setBadConfirmPassword(false);
+  //   }
 
-    if (isValid) {
-      saveData();
-    } else {
-      setIsLoading(false);
-    }
-  };
+  //   if (isValid) {
+  //     saveData();
+  //   } else {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   // async storage function
-  const saveData = async () => {
-    try {
-      await AsyncStorage.setItem("NAME", name);
-      await AsyncStorage.setItem("EMAIL", email);
-      await AsyncStorage.setItem("Mobile", mobile);
-      await AsyncStorage.setItem("PASSWORD", password);
+  // const saveData = async () => {
+  //   try {
+  //     await AsyncStorage.setItem("NAME", name);
+  //     await AsyncStorage.setItem("EMAIL", email);
+  //     await AsyncStorage.setItem("Mobile", mobile);
+  //     await AsyncStorage.setItem("PASSWORD", password);
 
-      navigation.goBack();
+  //     navigation.goBack();
 
-      console.log("Successfully saved");
-    } catch (error) {
-      console.error("Error saving data:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  //     console.log("Successfully saved");
+  //   } catch (error) {
+  //     console.error("Error saving data:", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>

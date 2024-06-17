@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Splash from "../Screens/Splash";
+// import Splash from "../Screens/Splash";
 import Login from "../Screens/Login";
 import Signup from "../Screens/Signup";
 import Home from "../Screens/Home";
@@ -17,25 +17,25 @@ const AppNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         {/* splash screen */}
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{ headerShown: false }}
           name="Splash"
           component={Splash}
-        />
+        /> */}
 
         {/* login screen */}
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{ headerShown: false }}
           name="Login"
           component={Login}
-        />
+        /> */}
 
         {/* signup screen */}
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{ headerShown: false }}
           name="Signup"
           component={Signup}
-        />
+        /> */}
 
         {/* home screen */}
         <Stack.Screen
