@@ -3,7 +3,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../Common/CartItem";
 import { addToWishlist, removeFromCart } from "../Redux/actions/Actions";
-import CommonButton from "../Common/CommonButton";
 
 const Cart = () => {
   const cartData = useSelector((state) => state.reducers);
@@ -36,16 +35,6 @@ const Cart = () => {
           <Text>No item added in cart.</Text>
         </View>
       )}
-
-      {cartData.length > 0 ? (
-        <View style={{ marginBottom: 0 }}>
-          <CommonButton
-            bgColor={"green"}
-            textColor={"#fff"}
-            title={"Checkout"}
-          />
-        </View>
-      ) : null}
     </View>
   );
 };

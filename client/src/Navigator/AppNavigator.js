@@ -1,11 +1,10 @@
 import * as React from "react";
-import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // import Splash from "../Screens/Splash";
-import Login from "../Screens/Login";
-import Signup from "../Screens/Signup";
+// import Login from "../Screens/Login";
+// import Signup from "../Screens/Signup";
 import Home from "../Screens/Home";
 import MyAddress from "../Screens/MyAddress";
 import AddAddressInfo from "../Screens/AddAddressInfo";
