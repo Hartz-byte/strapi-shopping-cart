@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import Splash from "../Screens/Splash";
 import Login from "../Screens/Login";
 import Signup from "../Screens/Signup";
 import Home from "../Screens/Home";
@@ -12,6 +12,13 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* Splash screen */}
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Splash"
+          component={Splash}
+        />
+
         {/* login screen */}
         <Stack.Screen
           options={{ headerShown: false }}

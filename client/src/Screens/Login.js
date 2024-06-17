@@ -4,7 +4,8 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import CustomTextInput from "../Common/CustomTextInput";
 import CommonButton from "../Common/CommonButton";
-// import Loader from "../Common/Loader";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Loader from "../Common/Loader";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -13,58 +14,58 @@ const Login = () => {
   const [badEmail, setBadEmail] = useState(false);
   const [password, setPassword] = useState("");
   const [badPassword, setBadPassword] = useState(false);
-
-  // const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   // login function
   const login = () => {
-    // setModalVisible(true);
+    setModalVisible(true);
 
     if (email == "") {
-      // setModalVisible(false);
+      setModalVisible(false);
       setBadEmail(true);
     } else {
       setBadEmail(false);
 
       if (password == "") {
-        // setModalVisible(false);
+        setModalVisible(false);
         setBadPassword(true);
       } else {
         setTimeout(() => {
           setBadPassword(false);
 
-          handleLogin();
+          // handleLogin();
+          getData();
         }, 2000);
       }
     }
   };
 
   // handle login
-  const handleLogin = async () => {
-    const url = `http://localhost:1337/api/auth/local`;
+  // const handleLogin = async () => {
+  //   const url = `http://localhost:1337/api/auth/local`;
 
-    try {
-      const res = await axios.post(url, email);
-      console.log({ res });
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
-  // get async data
-  // const getData = async () => {
-  //   const mEmail = await AsyncStorage.getItem("EMAIL");
-  //   const mPassword = await AsyncStorage.getItem("PASSWORD");
-
-  //   // login details checking and navigation
-  //   if (email == mEmail && password == mPassword) {
-  //     setModalVisible(false);
-
-  //     navigation.navigate("Home");
-  //   } else {
-  //     setModalVisible(false);
+  //   try {
+  //     const res = await axios.post(url, email);
+  //     console.log({ res });
+  //   } catch (err) {
+  //     console.log(err.message);
   //   }
   // };
+
+  // get async data
+  const getData = async () => {
+    const mEmail = await AsyncStorage.getItem("EMAIL");
+    const mPassword = await AsyncStorage.getItem("PASSWORD");
+
+    // login details checking and navigation
+    if (email == mEmail && password == mPassword) {
+      setModalVisible(false);
+
+      navigation.navigate("Home");
+    } else {
+      setModalVisible(false);
+    }
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -151,7 +152,7 @@ const Login = () => {
         Create New Account?
       </Text>
 
-      {/* <Loader modalVisible={modalVisible} setModalVisible={setModalVisible} /> */}
+      <Loader modalVisible={modalVisible} setModalVisible={setModalVisible} />
     </View>
   );
 };

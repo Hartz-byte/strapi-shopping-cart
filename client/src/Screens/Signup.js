@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import CustomTextInput from "../Common/CustomTextInput";
 import CommonButton from "../Common/CommonButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Signup = () => {
   const navigation = useNavigation();
@@ -50,41 +51,40 @@ const Signup = () => {
     }
 
     if (isValid) {
-      handleSignup();
+      // handleSignup();
+      saveData();
     } else {
       setIsLoading(false);
     }
   };
 
   // handle signup
-  const handleSignup = async () => {
-    const url = `http://localhost:1337/api/auth/local/register`;
+  // const handleSignup = async () => {
+  //   const url = `http://localhost:1337/api/auth/local/register`;
 
-    try {
-      const res = await axios.post(url, email, password);
-      console.log(res);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
-  // async storage function
-  // const saveData = async () => {
   //   try {
-  //     await AsyncStorage.setItem("NAME", name);
-  //     await AsyncStorage.setItem("EMAIL", email);
-  //     await AsyncStorage.setItem("Mobile", mobile);
-  //     await AsyncStorage.setItem("PASSWORD", password);
-
-  //     navigation.goBack();
-
-  //     console.log("Successfully saved");
-  //   } catch (error) {
-  //     console.error("Error saving data:", error);
-  //   } finally {
-  //     setIsLoading(false);
+  //     const res = await axios.post(url, email, password);
+  //     console.log(res);
+  //   } catch (err) {
+  //     console.log(err.message);
   //   }
   // };
+
+  // async storage function
+  const saveData = async () => {
+    try {
+      await AsyncStorage.setItem("EMAIL", email);
+      await AsyncStorage.setItem("PASSWORD", password);
+
+      navigation.goBack();
+
+      console.log("Successfully saved");
+    } catch (error) {
+      console.error("Error saving data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
