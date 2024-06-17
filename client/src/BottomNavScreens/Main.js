@@ -3,7 +3,6 @@ import {
   Text,
   Image,
   FlatList,
-  TouchableOpacity,
   ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
@@ -15,20 +14,11 @@ import { addItemToCart, addToWishlist } from "../Redux/actions/Actions";
 
 const Main = () => {
   const dispatch = useDispatch();
-
-  const [categoryList, setCategoryList] = useState([]);
   const [tshirtList, setTshirtList] = useState([]);
   const [shoesList, setShoesList] = useState([]);
   const [jacketList, setJacketList] = useState([]);
 
   useEffect(() => {
-    let tempCategory = [];
-
-    products.category.map((item) => {
-      tempCategory.push(item);
-    });
-
-    setCategoryList(tempCategory);
     setTshirtList(products.category[0].data);
     setShoesList(products.category[1].data);
     setJacketList(products.category[2].data);
@@ -51,29 +41,6 @@ const Main = () => {
             marginTop: 20,
           }}
         />
-
-        {/* categories flatlist */}
-        <View style={{ marginTop: 20 }}>
-          <FlatList
-            data={categoryList}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item, index }) => {
-              return (
-                <TouchableOpacity
-                  style={{
-                    padding: 10,
-                    borderWidth: 1,
-                    marginLeft: 20,
-                    borderRadius: 20,
-                  }}
-                >
-                  <Text style={{ color: "#000" }}>{item.category}</Text>
-                </TouchableOpacity>
-              );
-            }}
-          />
-        </View>
 
         {/* t-shirts */}
         <View>

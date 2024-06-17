@@ -1,11 +1,10 @@
 import { View, Text, Image } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-
+import axios from "axios";
 import CustomTextInput from "../Common/CustomTextInput";
 import CommonButton from "../Common/CommonButton";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-import Loader from "../Common/Loader";
+// import Loader from "../Common/Loader";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -15,30 +14,42 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [badPassword, setBadPassword] = useState(false);
 
-  const [modalVisible, setModalVisible] = useState(false);
+  // const [modalVisible, setModalVisible] = useState(false);
 
   // login function
-  // const login = () => {
-  //   setModalVisible(true);
+  const login = () => {
+    // setModalVisible(true);
 
-  //   if (email == "") {
-  //     setModalVisible(false);
-  //     setBadEmail(true);
-  //   } else {
-  //     setBadEmail(false);
+    if (email == "") {
+      // setModalVisible(false);
+      setBadEmail(true);
+    } else {
+      setBadEmail(false);
 
-  //     if (password == "") {
-  //       setModalVisible(false);
-  //       setBadPassword(true);
-  //     } else {
-  //       setTimeout(() => {
-  //         setBadPassword(false);
+      if (password == "") {
+        // setModalVisible(false);
+        setBadPassword(true);
+      } else {
+        setTimeout(() => {
+          setBadPassword(false);
 
-  //         getData();
-  //       }, 2000);
-  //     }
-  //   }
-  // };
+          handleLogin();
+        }, 2000);
+      }
+    }
+  };
+
+  // handle login
+  const handleLogin = async () => {
+    const url = `http://localhost:1337/api/auth/local`;
+
+    try {
+      const res = await axios.post(url, email);
+      console.log({ res });
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   // get async data
   // const getData = async () => {
@@ -119,9 +130,9 @@ const Login = () => {
         title={"Login"}
         bgColor={"#000"}
         textColor={"#fff"}
-        // onPress={() => {
-        //   login();
-        // }}
+        onPress={() => {
+          login();
+        }}
       />
 
       {/* register text */}
@@ -140,7 +151,7 @@ const Login = () => {
         Create New Account?
       </Text>
 
-      <Loader modalVisible={modalVisible} setModalVisible={setModalVisible} />
+      {/* <Loader modalVisible={modalVisible} setModalVisible={setModalVisible} /> */}
     </View>
   );
 };

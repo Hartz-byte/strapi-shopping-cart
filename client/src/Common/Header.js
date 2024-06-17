@@ -7,7 +7,7 @@ const Header = () => {
       style={{
         width: "100%",
         height: 100,
-        justifyContent: "space-between",
+        justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
         borderBottomWidth: 0.2,
@@ -21,21 +21,10 @@ const Header = () => {
           fontWeight: "600",
           fontSize: 20,
           color: "#000",
-          marginLeft: 20,
         }}
       >
-        FashionApp
+        Fashion App
       </Text>
-
-      <TouchableOpacity
-        style={{
-          marginRight: 20,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text>Mode</Text>
-      </TouchableOpacity>
     </View>
   );
 };

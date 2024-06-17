@@ -1,19 +1,15 @@
 import { View, Text, Image, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 import CustomTextInput from "../Common/CustomTextInput";
 import CommonButton from "../Common/CommonButton";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Signup = () => {
   const navigation = useNavigation();
 
-  const [name, setName] = useState("");
-  const [badName, setBadName] = useState(false);
   const [email, setEmail] = useState("");
   const [badEmail, setBadEmail] = useState(false);
-  const [mobile, setMobile] = useState("");
-  const [badMobile, setBadMobile] = useState(false);
   const [password, setPassword] = useState("");
   const [badPassword, setBadPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -21,58 +17,56 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // validation function
-  // const signup = () => {
-  //   setIsLoading(true);
+  const signup = () => {
+    setIsLoading(true);
 
-  //   let isValid = true;
+    let isValid = true;
 
-  //   if (name.trim() === "") {
-  //     isValid = false;
-  //     setBadName(true);
-  //   } else {
-  //     setBadName(false);
-  //   }
+    if (email.trim() === "") {
+      isValid = false;
+      setBadEmail(true);
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      isValid = false;
+      setBadEmail(true);
+    } else {
+      setBadEmail(false);
+    }
 
-  //   if (email.trim() === "") {
-  //     isValid = false;
-  //     setBadEmail(true);
-  //   } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-  //     isValid = false;
-  //     setBadEmail(true);
-  //   } else {
-  //     setBadEmail(false);
-  //   }
+    if (password.trim() === "") {
+      isValid = false;
+      setBadPassword(true);
+    } else {
+      setBadPassword(false);
+    }
 
-  //   if (mobile.length !== 10) {
-  //     isValid = false;
-  //     setBadMobile(true);
-  //   } else {
-  //     setBadMobile(false);
-  //   }
+    if (confirmPassword.trim() === "") {
+      isValid = false;
+      setBadConfirmPassword(true);
+    } else if (confirmPassword !== password) {
+      isValid = false;
+      setBadConfirmPassword(true);
+    } else {
+      setBadConfirmPassword(false);
+    }
 
-  //   if (password.trim() === "") {
-  //     isValid = false;
-  //     setBadPassword(true);
-  //   } else {
-  //     setBadPassword(false);
-  //   }
+    if (isValid) {
+      handleSignup();
+    } else {
+      setIsLoading(false);
+    }
+  };
 
-  //   if (confirmPassword.trim() === "") {
-  //     isValid = false;
-  //     setBadConfirmPassword(true);
-  //   } else if (confirmPassword !== password) {
-  //     isValid = false;
-  //     setBadConfirmPassword(true);
-  //   } else {
-  //     setBadConfirmPassword(false);
-  //   }
+  // handle signup
+  const handleSignup = async () => {
+    const url = `http://localhost:1337/api/auth/local/register`;
 
-  //   if (isValid) {
-  //     saveData();
-  //   } else {
-  //     setIsLoading(false);
-  //   }
-  // };
+    try {
+      const res = await axios.post(url, email, password);
+      console.log(res);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   // async storage function
   // const saveData = async () => {
@@ -119,20 +113,6 @@ const Signup = () => {
           Sign Up
         </Text>
 
-        {/* name input area */}
-        <CustomTextInput
-          placeholder={"Enter Name"}
-          value={name}
-          onChangeText={(txt) => setName(txt)}
-          icon={require("../Images/user.png")}
-        />
-        {/* bad name */}
-        {badName === true && (
-          <Text style={{ marginTop: 10, alignSelf: "center", color: "red" }}>
-            Please Enter Name
-          </Text>
-        )}
-
         {/* email input area */}
         <CustomTextInput
           placeholder={"Enter Email Id"}
@@ -144,21 +124,6 @@ const Signup = () => {
         {badEmail === true && (
           <Text style={{ marginTop: 10, alignSelf: "center", color: "red" }}>
             Please Enter Email
-          </Text>
-        )}
-
-        {/* phone input area */}
-        <CustomTextInput
-          placeholder={"Enter Mobile"}
-          value={mobile}
-          onChangeText={(txt) => setMobile(txt)}
-          keyboardType={"number-pad"}
-          icon={require("../Images/phone.png")}
-        />
-        {/* bad mobile */}
-        {badMobile === true && (
-          <Text style={{ marginTop: 10, alignSelf: "center", color: "red" }}>
-            Please Enter Mobile (10 digits)
           </Text>
         )}
 

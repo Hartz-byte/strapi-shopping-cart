@@ -35,41 +35,6 @@ export const products = {
         },
       ],
     },
-    // {
-    //   category: "Jeans",
-    //   data: [
-    //     {
-    //       name: "Jeans 1",
-    //       price: 300,
-    //       gender: "male",
-    //       image: require("./Images/jeans/jeans1.jpg"),
-    //     },
-    //     {
-    //       name: "Jeans 2",
-    //       price: 300,
-    //       gender: "male",
-    //       image: require("./Images/jeans/jeans2.jpg"),
-    //     },
-    //     {
-    //       name: "Jeans 3",
-    //       price: 300,
-    //       gender: "male",
-    //       image: require("./Images/jeans/jeans3.jpg"),
-    //     },
-    //     {
-    //       name: "Jeans 4",
-    //       price: 300,
-    //       gender: "male",
-    //       image: require("./Images/jeans/jeans4.jpg"),
-    //     },
-    //     {
-    //       name: "Jeans 5",
-    //       price: 300,
-    //       gender: "male",
-    //       image: require("./Images/jeans/jeans5.jpg"),
-    //     },
-    //   ],
-    // },
     {
       category: "Shoes",
       data: [
@@ -137,76 +102,6 @@ export const products = {
           price: 300,
           gender: "male",
           image: require("./Images/jackets/jacket5.jpg"),
-        },
-      ],
-    },
-    {
-      category: "Slipper",
-      data: [
-        {
-          name: "Slipper 1",
-          price: 300,
-          gender: "male",
-          image: require("./Images/slippers/slipper1.jpg"),
-        },
-        {
-          name: "Slipper 2",
-          price: 300,
-          gender: "male",
-          image: require("./Images/slippers/slipper2.jpg"),
-        },
-        {
-          name: "Slipper 3",
-          price: 300,
-          gender: "male",
-          image: require("./Images/slippers/slipper3.jpg"),
-        },
-        {
-          name: "Slipper 4",
-          price: 300,
-          gender: "male",
-          image: require("./Images/slippers/slipper4.jpg"),
-        },
-        {
-          name: "Slipper 5",
-          price: 300,
-          gender: "male",
-          image: require("./Images/slippers/slipper5.jpg"),
-        },
-      ],
-    },
-    {
-      category: "Trousers",
-      data: [
-        {
-          name: "Trouser 1",
-          price: 300,
-          gender: "female",
-          image: require("./Images/trousers/trouser1.jpg"),
-        },
-        {
-          name: "Trouser 2",
-          price: 300,
-          gender: "female",
-          image: require("./Images/trousers/trouser2.jpg"),
-        },
-        {
-          name: "Trouser 3",
-          price: 300,
-          gender: "male",
-          image: require("./Images/trousers/trouser3.jpg"),
-        },
-        {
-          name: "Trouser 4",
-          price: 300,
-          gender: "male",
-          image: require("./Images/trousers/trouser4.jpg"),
-        },
-        {
-          name: "Trouser 5",
-          price: 300,
-          gender: "female",
-          image: require("./Images/trousers/trouser5.jpg"),
         },
       ],
     },
