@@ -1,13 +1,21 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const Header = () => {
+  const navigation = useNavigation();
+
+  // handle logout function
+  const handleLogout = () => {
+    navigation.navigate("Login");
+  };
+
   return (
     <View
       style={{
         width: "100%",
         height: 100,
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",
         borderBottomWidth: 0.2,
@@ -21,10 +29,15 @@ const Header = () => {
           fontWeight: "600",
           fontSize: 20,
           color: "#000",
+          marginLeft: 20,
         }}
       >
         Fashion App
       </Text>
+
+      <TouchableOpacity onPress={handleLogout} style={{ marginRight: 20 }}>
+        <Text style={{ fontSize: 16, fontWeight: "bold" }}>Log out</Text>
+      </TouchableOpacity>
     </View>
   );
 };
