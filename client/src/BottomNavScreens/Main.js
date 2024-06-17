@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../Common/Header";
 import { products } from "../Products";
 import MyProductItem from "../Common/MyProductItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItemToCart, addToWishlist } from "../Redux/actions/Actions";
 
 const Main = () => {
@@ -18,11 +18,8 @@ const Main = () => {
 
   const [categoryList, setCategoryList] = useState([]);
   const [tshirtList, setTshirtList] = useState([]);
-  const [jeansList, setJeansList] = useState([]);
   const [shoesList, setShoesList] = useState([]);
   const [jacketList, setJacketList] = useState([]);
-  const [trousersList, setTrousersList] = useState([]);
-  const [slipperList, setSlipperList] = useState([]);
 
   useEffect(() => {
     let tempCategory = [];
@@ -33,15 +30,9 @@ const Main = () => {
 
     setCategoryList(tempCategory);
     setTshirtList(products.category[0].data);
-    setJeansList(products.category[1].data);
-    setShoesList(products.category[2].data);
-    setJacketList(products.category[3].data);
-    setSlipperList(products.category[4].data);
-    setTrousersList(products.category[5].data);
+    setShoesList(products.category[1].data);
+    setJacketList(products.category[2].data);
   }, []);
-
-  // const items = useSelector((state) => state);
-  // console.log(items);
 
   return (
     <ScrollView style={{ flex: 1 }}>
@@ -119,41 +110,6 @@ const Main = () => {
           </View>
         </View>
 
-        {/* Jeans */}
-        <View>
-          <Text
-            style={{
-              marginTop: 20,
-              marginLeft: 20,
-              color: "#000",
-              fontSize: 16,
-              fontWeight: "600",
-            }}
-          >
-            New Jeans
-          </Text>
-          <View style={{ marginTop: 20 }}>
-            <FlatList
-              data={jeansList}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item, index }) => {
-                return (
-                  <MyProductItem
-                    item={item}
-                    onAddToWishlist={(x) => {
-                      dispatch(addToWishlist(x));
-                    }}
-                    onAddToCart={(x) => {
-                      dispatch(addItemToCart(item));
-                    }}
-                  />
-                );
-              }}
-            />
-          </View>
-        </View>
-
         {/* Shoes */}
         <View>
           <Text
@@ -205,76 +161,6 @@ const Main = () => {
           <View style={{ marginTop: 20 }}>
             <FlatList
               data={jacketList}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item, index }) => {
-                return (
-                  <MyProductItem
-                    item={item}
-                    onAddToWishlist={(x) => {
-                      dispatch(addToWishlist(x));
-                    }}
-                    onAddToCart={(x) => {
-                      dispatch(addItemToCart(item));
-                    }}
-                  />
-                );
-              }}
-            />
-          </View>
-        </View>
-
-        {/* Slippers */}
-        <View>
-          <Text
-            style={{
-              marginTop: 20,
-              marginLeft: 20,
-              color: "#000",
-              fontSize: 16,
-              fontWeight: "600",
-            }}
-          >
-            New Slippers
-          </Text>
-          <View style={{ marginTop: 20 }}>
-            <FlatList
-              data={slipperList}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item, index }) => {
-                return (
-                  <MyProductItem
-                    item={item}
-                    onAddToWishlist={(x) => {
-                      dispatch(addToWishlist(x));
-                    }}
-                    onAddToCart={(x) => {
-                      dispatch(addItemToCart(item));
-                    }}
-                  />
-                );
-              }}
-            />
-          </View>
-        </View>
-
-        {/* Trousers */}
-        <View>
-          <Text
-            style={{
-              marginTop: 20,
-              marginLeft: 20,
-              color: "#000",
-              fontSize: 16,
-              fontWeight: "600",
-            }}
-          >
-            New Trousers
-          </Text>
-          <View style={{ marginTop: 20 }}>
-            <FlatList
-              data={trousersList}
               horizontal
               showsHorizontalScrollIndicator={false}
               renderItem={({ item, index }) => {

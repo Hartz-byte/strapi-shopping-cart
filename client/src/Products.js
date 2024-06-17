@@ -35,41 +35,41 @@ export const products = {
         },
       ],
     },
-    {
-      category: "Jeans",
-      data: [
-        {
-          name: "Jeans 1",
-          price: 300,
-          gender: "male",
-          image: require("./Images/jeans/jeans1.jpg"),
-        },
-        {
-          name: "Jeans 2",
-          price: 300,
-          gender: "male",
-          image: require("./Images/jeans/jeans2.jpg"),
-        },
-        {
-          name: "Jeans 3",
-          price: 300,
-          gender: "male",
-          image: require("./Images/jeans/jeans3.jpg"),
-        },
-        {
-          name: "Jeans 4",
-          price: 300,
-          gender: "male",
-          image: require("./Images/jeans/jeans4.jpg"),
-        },
-        {
-          name: "Jeans 5",
-          price: 300,
-          gender: "male",
-          image: require("./Images/jeans/jeans5.jpg"),
-        },
-      ],
-    },
+    // {
+    //   category: "Jeans",
+    //   data: [
+    //     {
+    //       name: "Jeans 1",
+    //       price: 300,
+    //       gender: "male",
+    //       image: require("./Images/jeans/jeans1.jpg"),
+    //     },
+    //     {
+    //       name: "Jeans 2",
+    //       price: 300,
+    //       gender: "male",
+    //       image: require("./Images/jeans/jeans2.jpg"),
+    //     },
+    //     {
+    //       name: "Jeans 3",
+    //       price: 300,
+    //       gender: "male",
+    //       image: require("./Images/jeans/jeans3.jpg"),
+    //     },
+    //     {
+    //       name: "Jeans 4",
+    //       price: 300,
+    //       gender: "male",
+    //       image: require("./Images/jeans/jeans4.jpg"),
+    //     },
+    //     {
+    //       name: "Jeans 5",
+    //       price: 300,
+    //       gender: "male",
+    //       image: require("./Images/jeans/jeans5.jpg"),
+    //     },
+    //   ],
+    // },
     {
       category: "Shoes",
       data: [
