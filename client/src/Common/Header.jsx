@@ -9,9 +9,13 @@ const Header = () => {
   const { user } = useAuthContext();
 
   // handle logout function
-  const handleLogout = () => {
-    removeToken();
-    navigation.navigate("Login", { replace: true });
+  const handleLogout = async () => {
+    try {
+      await removeToken();
+      navigation.navigate("Login", { replace: true });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

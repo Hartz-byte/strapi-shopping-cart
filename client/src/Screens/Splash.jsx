@@ -2,6 +2,7 @@ import { View, Image } from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getToken } from "../helpers";
 
 const Splash = () => {
   const navigation = useNavigation();
@@ -12,13 +13,27 @@ const Splash = () => {
     }, 3000);
   }, []);
 
-  const getData = async () => {
-    const email = await AsyncStorage.getItem("EMAIL");
+  // const getData = async () => {
+  //   const email = await AsyncStorage.getItem("EMAIL");
 
-    if (email !== "" || email !== null || email !== undefined) {
-      navigation.navigate("Home");
-    } else {
-      navigation.navigate("Login");
+  //   if (email !== "" || email !== null || email !== undefined) {
+  //     navigation.navigate("Home");
+  //   } else {
+  //     navigation.navigate("Login");
+  //   }
+  // };
+
+  const getData = async () => {
+    try {
+      const token = await getToken();
+
+      if (token) {
+        navigation.navigate("Home");
+      } else {
+        navigation.navigate("Login");
+      }
+    } catch (error) {
+      console.log("Error fetching token: ", error);
     }
   };
 
