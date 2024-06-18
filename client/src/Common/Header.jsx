@@ -24,7 +24,7 @@ const Header = () => {
         paddingTop: 20,
       }}
     >
-      <Text>Fashion App</Text>
+      <Text style={{ marginLeft: 20 }}>Fashion App</Text>
 
       <TouchableOpacity onPress={handleLogout} style={{ marginRight: 20 }}>
         <Text style={{ fontSize: 16, fontWeight: "bold" }}>Log out</Text>
