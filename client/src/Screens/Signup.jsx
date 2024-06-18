@@ -58,18 +58,6 @@ const Signup = () => {
     }
   };
 
-  // handle signup
-  // const handleSignup = async () => {
-  //   const url = `http://localhost:1337/api/auth/local/register`;
-
-  //   try {
-  //     const res = await axios.post(url, email, password);
-  //     console.log(res);
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // };
-
   // async storage function
   const saveData = async () => {
     try {
