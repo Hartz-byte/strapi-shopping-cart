@@ -1,59 +1,55 @@
 import { View, Text, Image } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import axios from "axios";
 import CustomTextInput from "../Common/CustomTextInput";
 import CommonButton from "../Common/CommonButton";
-import Loader from "../Common/Loader";
-import { useAuthContext } from "../Context/AuthContext";
-import { API, getUsers } from "../constant";
-import { setToken } from "../helpers";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
   const navigation = useNavigation();
-  const { setUser } = useAuthContext();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const [email, setEmail] = useState("");
-  const [badEmail, setBadEmail] = useState(false);
   const [password, setPassword] = useState("");
-  const [badPassword, setBadPassword] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
 
-  // login function
-  const login = async (values) => {
-    setIsLoading(true);
-
+  const handleLogin = async () => {
     try {
-      const data = {
-        identifier: values.email,
-        password: values.password,
-      };
+      const baseUrl = "http://192.168.29.24:1337/api/register-users";
+      const queryParams = `?email=${email}&password=${password}`;
+      const url = baseUrl + queryParams;
 
-      const response = await axios.post(`${API}/carts`, data, {
+      const response = await fetch(url, {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-          // "X-API-Key":
-          // "3b315717616399174e1cbd2d61ec2b548b9968d22abd91d733ac903054adaeaf165326d5c142d959492095e0bd20221c1f132d88b9a7cdd81a81b583e258b1686f004628876ae00f1589ff38e32dd4ef741747a9ba7c5665881737c65de81b1cc7fd04f9b2a2f7d77c994fd049f83e36be67610b562724ac885c971dea04bab4",
         },
       });
 
-      if (response.data?.error) {
-        throw response.data.error;
-      } else {
-        console.log(response.data);
-        // Set the token and user
-        setToken(response.data.jwt);
-        setUser(response.data.user);
+      const data = await response.json();
 
-        navigation.navigate("Home", { replace: true });
+      if (data && data.data && data.data.length > 0) {
+        for (let i = 0; i < data.data.length; i++) {
+          const user = data.data[i];
+          const userId = user.id;
+          const email2 = user.attributes.email;
+          const fullname = user.attributes.fullname;
+          const password2 = user.attributes.password;
+          const info = user.attributes;
+
+          if (email == email2 && password == password2) {
+            const keyValues = [
+              ["userId", userId.toString()],
+              ["email", email2.toString()],
+              ["fullname", fullname.toString()],
+            ];
+
+            await AsyncStorage.multiSet(keyValues);
+            navigation.navigate("Home");
+          }
+        }
+      } else {
       }
     } catch (error) {
-      console.error(error);
-      setError(error);
-    } finally {
-      setIsLoading(false);
+      console.log("Error during registration:", error);
     }
   };
 
@@ -83,10 +79,6 @@ const Login = () => {
         Login
       </Text>
 
-      {error ? (
-        <Text style={{ color: "red", textAlign: "center" }}>{error}</Text>
-      ) : null}
-
       {/* email input area */}
       <CustomTextInput
         placeholder={"Enter Email Id"}
@@ -96,12 +88,6 @@ const Login = () => {
           setEmail(txt);
         }}
       />
-      {/* bad email */}
-      {badEmail === true && (
-        <Text style={{ marginTop: 10, alignSelf: "center", color: "red" }}>
-          Please Enter Email Id
-        </Text>
-      )}
 
       {/* password input area */}
       <CustomTextInput
@@ -113,12 +99,6 @@ const Login = () => {
           setPassword(txt);
         }}
       />
-      {/* bad password */}
-      {badPassword === true && (
-        <Text style={{ marginTop: 10, alignSelf: "center", color: "red" }}>
-          Please Enter Password
-        </Text>
-      )}
 
       {/* login button */}
       <CommonButton
@@ -126,7 +106,7 @@ const Login = () => {
         bgColor={"#000"}
         textColor={"#fff"}
         onPress={() => {
-          login();
+          handleLogin();
         }}
       />
 
@@ -145,8 +125,6 @@ const Login = () => {
       >
         Create New Account?
       </Text>
-
-      <Loader modalVisible={modalVisible} setModalVisible={setModalVisible} />
     </View>
   );
 };

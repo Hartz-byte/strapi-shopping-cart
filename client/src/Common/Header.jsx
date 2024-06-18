@@ -1,21 +1,13 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { useAuthContext } from "../Context/AuthContext";
-import { removeToken } from "../helpers";
 
 const Header = () => {
   const navigation = useNavigation();
-  const { user } = useAuthContext();
 
   // handle logout function
   const handleLogout = async () => {
-    try {
-      await removeToken();
-      navigation.navigate("Login", { replace: true });
-    } catch (error) {
-      console.error(error);
-    }
+    navigation.navigate("Login");
   };
 
   return (
@@ -32,21 +24,7 @@ const Header = () => {
         paddingTop: 20,
       }}
     >
-      {user ? (
-        <Text
-          style={{
-            fontWeight: "600",
-            fontSize: 20,
-            color: "#000",
-            marginLeft: 20,
-          }}
-        >
-          {/* Fashion App */}
-          {user.username}
-        </Text>
-      ) : (
-        <Text>Fashion App</Text>
-      )}
+      <Text>Fashion App</Text>
 
       <TouchableOpacity onPress={handleLogout} style={{ marginRight: 20 }}>
         <Text style={{ fontSize: 16, fontWeight: "bold" }}>Log out</Text>
